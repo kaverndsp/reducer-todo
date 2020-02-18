@@ -21,6 +21,18 @@ const TodoForm = () => {
     dispatch({ type: "REMOVE", payload: todo });
   };
 
+  const clear = e => {
+       e.preventDefault();
+       const confirmed = window.confirm("are you sure you want to remove all items?");
+        if(confirmed === true){
+           dispatch({type: "CLEAR", payload: todo})
+        } else{
+            alert("Okay, we'll keep what you have")
+        }
+     
+     
+  }
+
  
 
   return (
@@ -34,6 +46,7 @@ const TodoForm = () => {
           onChange={handleChange}></input>
         <button>Add</button>
         <button onClick={reset}>Delete</button>
+        <button onClick={clear}>Clear All</button>
       </form>
       <Todo id={state.id}  dispatch={dispatch} state={state} todo={todo} />
     </div>

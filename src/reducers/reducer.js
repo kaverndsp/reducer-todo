@@ -31,6 +31,9 @@ export const initialState = [
         );
       case "REMOVE":
         return state.filter(item => !item.completed);
+        case "CLEAR":
+            state = [{}]
+            return state;
   
       default:
         return state;
