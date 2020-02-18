@@ -1,37 +1,38 @@
-
-
-
-export const initialState = {
-    todos: [{
-        item: 'Learn about reducers',
-        completed: false,
-        id: 3892987589
+export const initialState = [
+    {
+      item: "Learn about reducers",
+      completed: false,
+      id: 1
     },
     {
-        item: 'Cry about reducers',
+        item: "Cry about reducers",
         completed: false,
-        id: 3892987580
-    },
-    {
-        item: 'Get angry about reducers',
+        id: 2
+      },
+      {
+        item: "Get angry about reducers",
         completed: false,
-        id: 3892987587
+        id: 3
+      }
+  ];
+  
+  export const reducer = (state, action) => {
+    switch (action.type) {
+      case "ADD-TODO":
+        const newTodo = {
+          item: action.payload,
+          completed: false,
+          id: Date.now()
+        };
+        return [...state, newTodo];
+      case "COMPLETED":
+        return state.map(item =>
+          item.id === action.id ? { ...item, completed: !item.completed } : item
+        );
+      case "REMOVE":
+        return state.filter(item => !item.completed);
+  
+      default:
+        return state;
     }
-]
-}
-
-
-export const reducer = (state, action) => {
- switch (action.type) {
-         case "ADD_TODO":
-             return { ...state, 
-
-                todos: [
-                    ...state.todos,
-                    {
-                       
-                      }
-                ]
-             }
-            }
-        }
+  };
